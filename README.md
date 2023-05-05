@@ -16,16 +16,9 @@ A Selenium-based web testing framework with BDD (Behavior-Driven Development) su
 
 2. Clone the repository:
 
-git clone https://gitlab.com/yourusername/your_project.git
-cd your_project
-Replace `yourusername` and `your_project` with the appropriate values.
+```git clone https://github.com/markjsapp/Selenium-UI-Framework```
 
-3. Create a virtual environment (optional but recommended):
-
-python -m venv venv
-source venv/bin/activate # On Windows, use venv\Scripts\activate
-
-4. Install the required packages:
+3. Install the required packages:
 
 pip install -r requirements.txt
 
@@ -57,9 +50,10 @@ pytest tests/
 behave features/
 
 4. Generate the test reports:
-
+```
 pytest --html=report_pytest.html --self-contained-html --junitxml=junit_pytest_report.xml tests/
 behave --format pretty --format junit --outfile=junit_behave_report.xml --format html --outfile=report_behave.html features/
+```
 
 The test reports will be generated in the project's root directory.
 
