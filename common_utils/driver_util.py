@@ -3,6 +3,8 @@ from dotenv import load_dotenv
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
 load_dotenv()
 
@@ -14,6 +16,7 @@ def get_driver():
     
     if browser == "chrome":
         chrome_options = ChromeOptions()
+        chrome_options.add_experimental_option("excludeSwitches", ["enable-logging"])
         if headless:
             chrome_options.add_argument("--headless")
         return webdriver.Chrome(executable_path=ChromeDriverManager(version=chrome_version).install(), options=chrome_options)

@@ -7,7 +7,7 @@ from common_utils.driver_util import get_driver
 
 @given('I am on the Google homepage')
 def step_open_google_homepage(context):
-    context.driver = webdriver.Firefox()
+    context.driver = get_driver()
     context.google_page = GooglePage(context.driver)
     context.google_page.driver.get('https://www.google.com')
 

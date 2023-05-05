@@ -1,0 +1,50 @@
+image: "python:3.8"
+
+stages:
+  - test
+
+test:
+  stage: test
+  script:
+    - pip install -r requirements.txt
+    - pytest --html=report_pytest.html --self-contained-html --junitxml=junit_pytest_report.xml tests/
+    - behave --color --format pretty --format junit --outfile=junit_behave_report.xml --format html --outfile=report_behave.html features/
+  artifacts:
+    when: always
+    paths:
+      - report_pytest.html
+      - junit_pytest_report.xml
+      - report_behave.html
+      - junit_behave_report.xml
+
+test:chrome:
+  stage: test
+  variables:
+    BROWSER: "chrome"
+  script:
+    - pip install -r requirements.txt
+    - pytest --html=report_pytest_chrome.html --self-contained-html --junitxml=junit_pytest_report_chrome.xml tests/
+    - behave --color --format pretty --format junit --outfile=junit_behave_report_chrome.xml --format html --outfile=report_behave_chrome.html features/
+  artifacts:
+    when: always
+    paths:
+      - report_pytest_chrome.html
+      - junit_pytest_report_chrome.xml
+      - report_behave_chrome.html
+      - junit_behave_report_chrome.xml
+
+test:firefox:
+  stage: test
+  variables:
+    BROWSER: "firefox"
+  script:
+    - pip install -r requirements.txt
+    - pytest --html=report_pytest_firefox.html --self-contained-html --junitxml=junit_pytest_report_firefox.xml tests/
+    - behave --color --format pretty --format junit --outfile=junit_behave_report_firefox.xml --format html --outfile=report_behave_firefox.html features/
+  artifacts:
+    when: always
+    paths:
+      - report_pytest_firefox.html
+      - junit_pytest_report_firefox.xml
+      - report_behave_firefox.html
+      - junit_behave_report_firefox.xml

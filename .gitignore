@@ -1,5 +1,4 @@
 .env
-.gitlab-ci.yml
 /venv
 /geckodriver.log
 /common_utils/__pycache__
