@@ -1,3 +1,6 @@
 .env
 .gitlab-ci.yml
 /venv
+/geckodriver.log
+/common_utils/__pycache__
+/pages/__pycache__

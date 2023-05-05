@@ -10,10 +10,17 @@ def get_driver():
     browser = os.getenv("BROWSER", "chrome").lower()
     chrome_version = os.getenv("CHROME_VERSION", "latest")
     firefox_version = os.getenv("FIREFOX_VERSION", "latest")
-
+    headless = os.getenv("HEADLESS", "true").lower() == "true"
+    
     if browser == "chrome":
-        return webdriver.Chrome(executable_path=ChromeDriverManager(version=chrome_version).install())
+        chrome_options = ChromeOptions()
+        if headless:
+            chrome_options.add_argument("--headless")
+        return webdriver.Chrome(executable_path=ChromeDriverManager(version=chrome_version).install(), options=chrome_options)
     elif browser == "firefox":
-        return webdriver.Firefox(executable_path=GeckoDriverManager(version=firefox_version).install())
+        firefox_options = FirefoxOptions()
+        if headless:
+            firefox_options.add_argument("--headless")
+        return webdriver.Firefox(executable_path=GeckoDriverManager(version=firefox_version).install(), options=firefox_options)
     else:
         raise ValueError(f"Unsupported browser: {browser}")
